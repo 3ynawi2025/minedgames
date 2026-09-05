@@ -1,0 +1,17 @@
+This app, "Brain Match: Number Puzzles", is an entirely original product built completely from scratch by a small independent team. There is no template, no third-party source code, and no skeleton of another app behind it. Every screen, mechanic, illustration, icon and animation was designed and coded by hand specifically for this release.
+
+Version 1.2 is not a generic number-puzzle clone. It is one cohesive original product defined by a travel and collection identity that does not exist anywhere in this category.
+
+1. World-Tour narrative progression. The game is structured as a journey through 20 real cities - Dubai, Paris, Cairo, Tokyo and more. Each city has 10 rounds, custom landmark illustrations and its own country flag, and unlocking the next city requires completing the previous one.
+
+2. Postcard Collection book. Finishing a city earns a collectible 3D claymorphism postcard featuring the landmark, the country flag, a fun cultural fact and the date it was earned. This collection and education meta-game is unique among number-puzzle apps.
+
+3. A branded signature mechanic called "Linked Cities". Players match pairs of numbers across empty gaps in a row, column or diagonal, joined by animated gradient connection threads. This is our own designed mechanic, not copied from any other title.
+
+4. A custom claymorphism design system with a bespoke thin-stroke icon set and the Baloo rounded typeface. Classic puzzle formats are re-imagined, not duplicated: 2048 becomes "Skyline", where tiles evolve into glowing city blocks, and Sudoku becomes "City Planner", themed with a paper-grain and skyline backdrop. Each city unlock plays a choreographed win sequence.
+
+5. Full bilingual Arabic (RTL) and English support, which is rare in this genre.
+
+6. 100% offline play with no forced ads. Progress is rewarded through a coin economy driven by win and rank rewards, tiered hints, a daily challenge and eight ranks. In-app purchases offer only optional coin packs.
+
+Thank you for reconsidering. This is not a repackaged clone; it is one original, hand-built product with a unique travel and collection identity.

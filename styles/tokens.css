@@ -1,0 +1,266 @@
+/* ============ Brain Games — Claymorphism Design Tokens ============
+   Refined premium calibration. Keeps the Material 3 clay base but
+   makes it richer and more distinctive: deeper coral, a signature
+   indigo + teal + gold triad, tinted (never black) shadows, tabular
+   numerals, and a full spring/easing motion set.
+   Typography is the chunky rounded "Baloo 2" / "Baloo Bhaijaan 2"
+   family (already loaded via Google Fonts) everywhere. */
+
+:root {
+  color-scheme: light;
+
+  /* --- 1) لوحة الألوان الأساسية (مُعايَرة premium) --- */
+  --primary: #f2705a;        /* مرجاني — العلامة */
+  --primary-strong: #e0513d;
+  --primary-press: #d9593f;
+  --secondary: #7c4bd6;      /* بنفسجي أعمق قليلاً */
+  --accent: #f7b33b;         /* ذهبي (عملات) */
+  --accent-deep: #c98c0d;
+  --background: #fff7fa;
+  --surface: #ffffff;
+  --surface-dim: #e9dbe2;
+  --on-surface: #1e1430;
+  --on-surface-muted: #57423e;
+  --success: #2ec4a8;
+  --error: #e5484d;
+
+  /* ألوان مميزة للهوية */
+  --brand-teal: #2ec4a8;
+  --brand-indigo: #6b38d4;
+  --brand-rose: #ec4899;
+  --brand-sky: #4fa3e8;
+  --brand-gold: #f7b33b;
+
+  /* --- 2) ظلال Claymorphism (محسّنة، ملوّنة وليست سوداء) --- */
+  --clay-shadow-outer: 0 10px 22px rgba(242,112,90,.14), 0 2px 4px rgba(124,75,214,.10), inset 4px 4px 9px rgba(255,255,255,.60), inset -4px -4px 9px rgba(0,0,0,.06);
+  --clay-shadow-inner: inset 4px 4px 8px rgba(0,0,0,.06), inset -4px -4px 8px rgba(255,255,255,.55);
+  --clay-shadow-soft: 0 6px 14px rgba(124,75,214,.12), inset 2px 2px 5px rgba(255,255,255,.45), inset -2px -2px 5px rgba(0,0,0,.05);
+  --shadow-tinted: 0 8px 22px rgba(242,112,90,.20);
+  --shadow-gold: 0 8px 22px rgba(247,179,59,.24);
+  --shadow-indigo: 0 8px 22px rgba(108,56,212,.22);
+  --clay-border-radius: 24px;
+
+  /* --- 3) رموز Material الكاملة (DESIGN.md حرفيًا) --- */
+  --surface-bright: #fff7fa;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #fcf1f7;
+  --surface-container: #f6ebf1;
+  --surface-container-high: #f0e5eb;
+  --surface-container-highest: #eae0e6;
+  --on-surface-variant: #57423e;
+  --inverse-surface: #342f33;
+  --inverse-on-surface: #f9eef4;
+  --outline: #8b716c;
+  --outline-variant: #dfc0ba;
+  --surface-tint: #a73928;
+  --md-primary: #a73928;
+  --on-primary: #ffffff;
+  --primary-container: #f2705a;
+  --on-primary-container: #650701;
+  --inverse-primary: #ffb4a6;
+  --md-secondary: #6b38d4;
+  --on-secondary: #ffffff;
+  --secondary-container: #8455ef;
+  --on-secondary-container: #fffbff;
+  --tertiary: #7f5600;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #c98c0d;
+  --on-tertiary-container: #432b00;
+  --md-error: #ba1a1a;
+  --on-error: #ffffff;
+  --error-container: #ffdad6;
+  --on-error-container: #93000a;
+  --primary-fixed: #ffdad4;
+  --primary-fixed-dim: #ffb4a6;
+  --on-primary-fixed: #400200;
+  --on-primary-fixed-variant: #862113;
+  --secondary-fixed: #e9ddff;
+  --secondary-fixed-dim: #d0bcff;
+  --on-secondary-fixed: #23005c;
+  --on-secondary-fixed-variant: #5516be;
+  --tertiary-fixed: #ffddaf;
+  --tertiary-fixed-dim: #ffba42;
+  --on-tertiary-fixed: #281800;
+  --on-tertiary-fixed-variant: #614000;
+  --on-background: #1f1a1e;
+  --surface-variant: #eae0e6;
+  --mint: #2EC4A8;
+  --sky: #4FA3E8;
+  --pink: #EC4899;
+
+  /* --- 4) الثيمات (DESIGN.md) --- */
+  --breeze-bg: #FDF2F8; --breeze-primary: #F2705A;
+  --night-bg: #12141B; --night-primary: #7B9CFF;
+  --emerald-bg: #F1F7F2; --emerald-primary: #1F9D6B;
+  --dusk-bg: #1E1430; --dusk-primary: #B48CFF;
+  --candy-bg: #FFF0F5; --candy-primary: #FF6FA5;
+
+  /* --- 5) الأسماء المستعارة للنظام القائم --- */
+  --bg: #fff7fa;
+  --bg-elevated: #ffffff;
+  --text: #1e1430;
+  --text-muted: #57423e;
+  --surface-edge: #e2d7dd;
+  --primary-press: #d9593f;
+  --primary-text: #a73928;
+  --accent-success: #2ec4a8;
+  --accent-info: #8b5cf6;
+  --accent-gold: #f7b33b;
+  --accent-rose: #ec4899;
+
+  /* --- الخلايا --- */
+  --cell-bg: #ffffff;
+  --cell-bg-bottom: #f6ecf1;
+  --cell-border: #e2d7dd;
+  --cell-hi: rgba(255,255,255,.75);
+  --cell-shadow-rgb: 190,120,140;
+  --cell-selected-bg: #fff0ed;
+  --cell-selected-border: #8455ef;
+  --cell-selected-shadow-rgb: 139,92,246;
+  --cell-match-glow: #8455ef;
+  --cell-frozen-bg: #e6e1f5;
+  --cell-hint-bg: #fff3ce;
+
+  /* --- 6) المقاسات (DESIGN.md) --- */
+  --radius-sm: 0.25rem;       /* 4px */
+  --radius: 0.5rem;           /* 8px */
+  --radius-md: 0.75rem;       /* 12px */
+  --radius-lg: 1rem;          /* 16px */
+  --radius-xl: 1.5rem;        /* 24px */
+  --radius-full: 9999px;
+  --space-base: 8px;
+  --space-gutter: 16px;
+  --space-margin-mobile: 20px;
+  --space-cell-gap: 6px;
+  --radius-cell: 16px;
+  --radius-card: 24px;
+  --radius-btn: 24px;
+  --border-w: 3px;
+  --touch: 44px;              /* هدف لمس بحد أدنى 44px */
+
+  /* --- 7) الظلال المستخدمة --- */
+  --shadow-card: var(--clay-shadow-outer);
+  --shadow-cell: 0 3px 0 rgba(var(--cell-shadow-rgb),.28), 0 6px 12px rgba(var(--cell-shadow-rgb),.12);
+  --shadow-cell-selected: inset 0 1px 0 var(--cell-hi), 0 0 0 3px rgba(139,92,246,.35), 0 5px 0 rgba(139,92,246,.30);
+
+  /* --- 8) الخطوط (Baloo — chunky rounded، محمّلة مسبقًا) --- */
+  --font-display: "Baloo 2", "Baloo Bhaijaan 2", "Nunito Sans", cursive;
+  --font-num: "Baloo 2", "Baloo Bhaijaan 2", "Nunito Sans", sans-serif;
+  --font-head: "Baloo 2", "Baloo Bhaijaan 2", "Nunito Sans", cursive;
+  --font-ui: "Baloo Bhaijaan 2", "Baloo 2", "Nunito Sans", sans-serif;
+  --fs-display: 42px; --fs-headline-lg: 32px; --fs-headline-md: 24px; --fs-game-number: 28px;
+  --fs-body-lg: 18px; --fs-body-sm: 14px; --fs-label: 12px;
+
+  /* --- 9) التوقيتات + مجموعة الحركة النابضة (Signature Motion) --- */
+  --dur-fast: 150ms;
+  --dur-pop: 240ms;
+  --dur-float: 700ms;
+  --ease-out: cubic-bezier(.22,.8,.24,1);
+  --ease-spring: cubic-bezier(.34,1.56,.64,1);          /* انبثاق ناعم */
+  --ease-premium: cubic-bezier(.32,.72,0,1);
+  /* حركة مميزة إضافية */
+  --ease-spring-soft: cubic-bezier(.22,1.4,.36,1);      /* دخول «لين» */
+  --ease-spring-bouncy: cubic-bezier(.36,1.8,.32,1);    /* ارتداد مرح */
+  --ease-expo-out: cubic-bezier(.16,1,.3,1);             /* خروج أُسّي سريع */
+  --ease-smooth: cubic-bezier(.4,.14,.28,1);
+  --spring-pop: cubic-bezier(.5,2,.5,1);
+  --dur-wins: 640ms;         /* مدة المرحلة الأولى من تسلسل الفوز */
+  --dur-stamp: 360ms;        /* مدة «الختم» */
+
+  /* --- حلقة التركيز (Focus ring) للوصولية --- */
+  --focus-ring: 0 0 0 3px rgba(124,75,214,.45), 0 0 0 6px rgba(124,75,214,.18);
+  --focus-ring-ink: 0 0 0 3px rgba(242,112,90,.50);
+
+  /* --- لوحة «Skyline / Energy» للعبة 2048 --- */
+  --energy-2: #e9ddc4;    --energy-2-ink: #5a4d40;
+  --energy-4: #ecd7b0;    --energy-4-ink: #5a4d40;
+  --energy-8: #f5c98a;    --energy-8-ink: #7a4a12;
+  --energy-16: #f6a869;   --energy-16-ink: #ffffff;
+  --energy-32: #f6845a;   --energy-32-ink: #ffffff;
+  --energy-64: #f5623e;   --energy-64-ink: #ffffff;
+  --energy-128: #f0d167;  --energy-128-ink: #4a3500;
+  --energy-256: #efc555;  --energy-256-ink: #4a3500;
+  --energy-512: #eeb844;  --energy-512-ink: #3a2800;
+  --energy-1024: #edab35; --energy-1024-ink: #fffbee;
+  --energy-2048: #eda12a; --energy-2048-ink: #fff8e0;
+  --energy-glow-rgb: 237,196,46;
+  --skyline-rgb: 84,60,120;
+
+  /* --- لوحة «City Planner» للسودوكو (ورق + سماء) --- */
+  --grain-rgb: 120,90,110;
+  --planner-line: #c8b4c2;
+  --planner-given: #3a2b52;
+  --planner-ink: #2a2233;
+
+  /* --- 10) منطقة الأمان العلوية (نوتش / الديناميك آيلاند) --- */
+  /* fallback لإصدارات iOS القديمة التي تدعم constant() وقبل دعم env() */
+  --safe-top: constant(safe-area-inset-top, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #12141b; --bg: #12141b;
+  --surface: #1b1e2a; --bg-elevated: #1b1e2a;
+  --surface-dim: #2e3345; --surface-edge: #2e3345;
+  --on-surface: #eceff7; --text: #eceff7;
+  --text-muted: #9aa0b5;
+  --primary: #7b9cff; --primary-press: #6486ee;
+  --primary-text: #9db3ff;
+  --secondary: #b48cff; --accent-info: #b48cff;
+  --accent: #f5c868; --accent-gold: #f5c868;
+  --on-primary: #10131f;
+  --on-secondary: #1e1430;
+  --accent-rose: #ff8ec2;
+  --cell-bg: #262b3b; --cell-bg-bottom: #1f2431; --cell-border: #343b52;
+  --cell-hi: rgba(255,255,255,.08); --cell-shadow-rgb: 0,0,0;
+  --cell-selected-bg: #2c3756; --cell-selected-border: #b48cff;
+  --cell-selected-shadow-rgb: 180,140,255;
+  --cell-frozen-bg: #26334f; --cell-hint-bg: #4a3f1e;
+  --shadow-card: 0 10px 30px rgba(0,0,0,.55);
+  --clay-shadow-outer: 0 10px 22px rgba(0,0,0,.55), inset 2px 2px 6px rgba(255,255,255,.05), inset -2px -2px 6px rgba(0,0,0,.5);
+  --clay-shadow-inner: inset 2px 2px 6px rgba(0,0,0,.5), inset -2px -2px 6px rgba(255,255,255,.05);
+}
+
+[data-theme="emerald"] {
+  --background: #f1f7f2; --bg: #f1f7f2; --bg-elevated: #ffffff;
+  --on-surface: #20332a; --text: #20332a; --text-muted: #6c8272;
+  --surface-edge: #cfe0d3;
+  --primary: #1f9d6b; --primary-press: #178456; --primary-text: #127a50;
+  --secondary: #3ba0e0; --accent-info: #3ba0e0;
+  --accent: #e8a93b; --accent-gold: #e8a93b;
+  --on-primary: #ffffff;
+  --cell-bg: #ffffff; --cell-bg-bottom: #e9f3ec; --cell-border: #cfe0d3;
+  --cell-hi: rgba(255,255,255,.75); --cell-shadow-rgb: 120,160,130;
+  --cell-selected-bg: #dff5e8; --cell-selected-border: #3ba0e0; --cell-selected-shadow-rgb: 59,160,224;
+  --cell-frozen-bg: #d8e8f3; --cell-hint-bg: #fbf0d6;
+}
+
+[data-theme="dusk"] {
+  color-scheme: dark;
+  --background: #1e1430; --bg: #1e1430; --bg-elevated: #2a1d42;
+  --on-surface: #f1ecfa; --text: #f1ecfa; --text-muted: #b4a6ce;
+  --surface-edge: #45306a;
+  --primary: #b48cff; --primary-press: #9d6ff5; --primary-text: #c9abff;
+  --secondary: #7db8ff; --accent-info: #7db8ff;
+  --accent: #ffc95c; --accent-gold: #ffc95c;
+  --on-primary: #1e1430;
+  --cell-bg: #372756; --cell-bg-bottom: #2c1e46; --cell-border: #4a3573;
+  --cell-hi: rgba(255,255,255,.10); --cell-shadow-rgb: 0,0,0;
+  --cell-selected-bg: #463069; --cell-selected-border: #7db8ff; --cell-selected-shadow-rgb: 125,184,255;
+  --cell-frozen-bg: #2f3a63; --cell-hint-bg: #4a3f1e;
+}
+
+[data-theme="candy"] {
+  --background: #fff0f5; --bg: #fff0f5; --bg-elevated: #ffffff;
+  --on-surface: #4a1d2e; --text: #4a1d2e; --text-muted: #a06b80;
+  --surface-edge: #ffc4d8;
+  --primary: #ff6fa5; --primary-press: #e8568c; --primary-text: #e0487e;
+  --secondary: #8b5cf6; --accent-info: #8b5cf6;
+  --accent: #ffc14d; --accent-gold: #ffc14d;
+  --on-primary: #3d0a1e;
+  --cell-bg: #ffffff; --cell-bg-bottom: #ffe7ef; --cell-border: #ffc4d8;
+  --cell-hi: rgba(255,255,255,.75); --cell-shadow-rgb: 230,140,170;
+  --cell-selected-bg: #ffe0eb; --cell-selected-border: #8b5cf6; --cell-selected-shadow-rgb: 139,92,246;
+  --cell-frozen-bg: #dcebff; --cell-hint-bg: #fff3ce;
+}

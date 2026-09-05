@@ -1,0 +1,142 @@
+/* ============ Juice (الحركات والاحتفالات) ============ */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sheetUp { from { transform: translateY(40px); opacity: .5; } to { transform: translateY(0); opacity: 1; } }
+@keyframes popIn { 0% { transform: scale(.4); } 70% { transform: scale(1.12); } 100% { transform: scale(1); } }
+@keyframes popOut {
+  0% { transform: scale(1); opacity: 1; }
+  40% { transform: scale(1.22); opacity: .9; }
+  100% { transform: scale(0); opacity: 0; }
+}
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-5px)} 40%{transform:translateX(5px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes hintPulse { 0%,100%{ transform: scale(1);} 50%{ transform: scale(1.12);} }
+@keyframes floatUp {
+  0% { transform: translate(-50%,0) scale(.8); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: translate(-50%,-46px) scale(1.15); opacity: 0; }
+}
+@keyframes confettiFall {
+  0% { transform: translateY(-10vh) rotate(0); opacity: 1; }
+  100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+}
+@keyframes celebrate {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes glowPulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(var(--cell-selected-shadow-rgb),.5); }
+  50% { box-shadow: 0 0 0 8px rgba(var(--cell-selected-shadow-rgb),0); }
+}
+
+/* ====== تسلسل «فتح المدينة» عند الفوز ====== */
+/* المرحلة 1: ظهور المعلم (قفزة نابضة) */
+@keyframes landmarkPop {
+  0% { transform: scale(0) rotate(-14deg); opacity: 0; }
+  45% { transform: scale(1.18) rotate(4deg); opacity: 1; }
+  70% { transform: scale(.94) rotate(-1deg); }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+/* المرحلة 2: «ختم-ختم» (سحق مرتد مرتين) */
+@keyframes cardStamp {
+  0% { transform: scale(.72); opacity: 0; }
+  16% { transform: scale(1.06); opacity: 1; }
+  30% { transform: scale(.90, .82); }
+  44% { transform: scale(1.03); }
+  58% { transform: scale(.94, .86); }
+  74% { transform: scale(1.02); }
+  100% { transform: scale(1); opacity: 1; }
+}
+/* المرحلة 4: صعود بطاقة الملخّص */
+@keyframes summaryRise {
+  from { transform: translateY(18px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+/* انبثاق مجموعة قصاصات المدينة (دفعة) */
+@keyframes cityBurst {
+  0% { transform: translate(0,0) scale(.4); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translate(var(--bx,0), var(--by,-70vh)) scale(1); opacity: 0; }
+}
+/* خيط اتصال متدرّج متحرّك */
+@keyframes threadHue {
+  0%,100% { filter: drop-shadow(0 0 2px var(--accent-info)); }
+  50% { filter: drop-shadow(0 0 5px var(--accent-gold)); }
+}
+
+/* نقاط متطايرة */
+.float-score {
+  position: fixed; transform: translate(-50%,0);
+  font-family: var(--font-num); font-weight: 900; font-size: 26px;
+  color: var(--accent-gold); pointer-events: none; z-index: 200;
+  text-shadow: 0 2px 6px rgba(0,0,0,.25);
+  animation: floatUp var(--dur-float) var(--ease-out) forwards;
+}
+
+/* قصاصات احتفال */
+.confetti {
+  position: fixed; top: 0; width: 10px; height: 16px; z-index: 200;
+  border-radius: 2px; pointer-events: none;
+  animation: confettiFall linear forwards;
+}
+.confetti.burst {
+  top: 50%; left: 50%;
+  width: 9px; height: 12px; border-radius: 3px;
+  animation: cityBurst var(--dur-wins) var(--ease-expo-out) forwards;
+}
+
+/* تراكب فوز/خسارة */
+.result-overlay {
+  position: fixed; inset: 0; display: grid; place-items: center;
+  background: rgba(20,16,10,.55); backdrop-filter: blur(4px); z-index: 150;
+  animation: fadeIn .25s var(--ease-out);
+}
+.result-card {
+  background: var(--bg-elevated); border-radius: 26px; padding: 30px 26px;
+  text-align: center; width: min(88vw, 400px);
+  box-shadow: var(--shadow-card);
+  animation: celebrate .4s var(--ease-spring);
+}
+.result-card .emoji { font-size: 60px; margin-bottom: 6px; }
+.result-card h2 { font-size: 26px; margin-bottom: 6px; }
+.result-card .score { font-family: var(--font-num); font-weight: 900; font-size: 40px; color: var(--primary); margin: 8px 0 4px; }
+.result-card .note { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+.result-card .btns { display: flex; flex-direction: column; gap: 10px; }
+
+/* ====== تطبيق تسلسل الفوز (أولوية أعلى من components) ====== */
+.result-overlay .result-card.win-card {
+  animation: cardStamp var(--dur-stamp) var(--ease-spring-soft) forwards;
+}
+.result-overlay .result-card.win-card .result-trophy {
+  animation: landmarkPop var(--dur-wins) var(--ease-spring-bouncy) both;
+}
+.result-overlay .result-card.win-card .result-summary {
+  opacity: 0;
+  animation: summaryRise .34s var(--ease-spring-soft) forwards;
+  animation-delay: .28s;
+}
+.result-overlay .result-card.win-card .result-note,
+.result-overlay .result-card.win-card .btns {
+  opacity: 0;
+  animation: summaryRise .3s var(--ease-spring-soft) forwards;
+  animation-delay: .46s;
+}
+
+/* خيط اتصال متدرّج متحرّك (الفئة التطبيقية) */
+.link-layer.link-thread line {
+  animation: threadFlow .9s linear infinite, threadHue 2.4s var(--ease-smooth) infinite;
+}
+
+/* توست إشعار */
+.toast {
+  position: fixed; left: 50%; bottom: 92px; transform: translateX(-50%) translateY(20px);
+  background: var(--text); color: var(--bg);
+  padding: 11px 18px; border-radius: 14px; font-weight: 700; font-size: 14px;
+  z-index: 220; opacity: 0; pointer-events: none;
+  transition: transform .25s var(--ease-spring-soft), opacity .25s var(--ease-premium);
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* تقليل الحركة (وصولية) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}

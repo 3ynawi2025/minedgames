@@ -1,0 +1,146 @@
+/* ============================================================
+   icons.css — أيقونات مخصصة (خط رفيع) + رحلة العالم + كتاب البطاقات + المقدمة
+   (يُضمّن عبر رابط يُحقن من ui.js لأن index.html ليس ضمن نطاق التعديل)
+   ============================================================ */
+
+/* ---- أيقونات SVG مخصصة: حجم افتراضي في سياقاتها ---- */
+.icon-btn svg, .back svg, .coin-pill svg, .lobby-logo svg,
+.tab .t-ico svg, .game-card .play svg, .gtitle .sub svg { display: block; }
+.icon-btn svg { width: 20px; height: 20px; }
+.back svg { width: 22px; height: 22px; }
+.coin-pill svg { width: 18px; height: 18px; color: #c98c0d; }
+.tab .t-ico svg { width: 22px; height: 22px; }
+.game-card .play svg { width: 20px; height: 20px; }
+.game-card .meta h3 svg, .game-card .meta .mech svg { width: 15px; height: 15px; color: var(--primary-text); }
+.gtitle .sub svg { width: 17px; height: 17px; color: var(--text-muted); }
+.lobby-logo svg { width: 26px; height: 26px; }
+
+/* ============================================================
+   1) بطاقة «جولة العالم» — هوية اللوبي (بطلة الصفحة)
+   ============================================================ */
+.city-hero {
+  position: relative; overflow: hidden;
+  border-radius: var(--radius-xl);
+  margin: 0 0 18px; padding: 20px 20px 20px;
+  background: linear-gradient(135deg, var(--hero-a, #F7B33B), var(--hero-b, #4FA3E8));
+  color: #fff; box-shadow: var(--clay-shadow-outer);
+}
+.city-hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(120% 55% at 50% -8%, rgba(255,255,255,.34), transparent 55%),
+    linear-gradient(to bottom, rgba(255,255,255,.08), transparent 40%);
+}
+.city-hero-landmark {
+  position: relative; width: 62%; max-width: 260px; margin: 0 auto 6px;
+  color: rgba(255,255,255,.82);
+  filter: drop-shadow(0 12px 20px rgba(0,0,0,.18));
+  animation: heroFloat 5.5s ease-in-out infinite;
+}
+.city-hero-landmark svg { width: 100%; height: auto; display: block; }
+.city-hero-kicker {
+  position: relative; z-index: 2;
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 12px; font-weight: 800; letter-spacing: .02em;
+  background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.35);
+  padding: 5px 12px; border-radius: 999px; backdrop-filter: blur(3px);
+}
+.city-hero-kicker svg { width: 15px; height: 15px; }
+.city-hero-body { position: relative; z-index: 2; text-align: center; }
+.city-hero-city { display: flex; align-items: center; justify-content: center; gap: 9px; margin: 10px 0 2px; }
+.city-hero-city .flag { font-size: 34px; line-height: 1; filter: drop-shadow(0 3px 5px rgba(0,0,0,.2)); }
+.city-hero-city h2 { font-family: var(--font-head); font-size: 30px; font-weight: 800; margin: 0; text-shadow: 0 2px 6px rgba(0,0,0,.14); }
+.city-hero-meta { font-size: 13px; font-weight: 700; opacity: .94; margin: 2px 0 12px; }
+.city-hero-bar { position: relative; z-index: 2; height: 9px; border-radius: 999px; background: rgba(255,255,255,.28); overflow: hidden; margin: 0 0 16px; direction: ltr; }
+.city-hero-bar .fill { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #fff, rgba(255,255,255,.72)); box-shadow: 0 2px 6px rgba(0,0,0,.22); transition: width .5s var(--ease-spring); }
+.city-hero-actions { position: relative; z-index: 2; display: flex; gap: 10px; }
+.city-hero-actions .btn { flex: 1; }
+.city-hero-actions .btn-primary { background: #fff; color: var(--hero-a, #B56A00); border: 0; box-shadow: var(--clay-shadow-outer); }
+.city-hero-actions .btn-primary:active { box-shadow: var(--clay-shadow-outer); }
+.city-hero-actions .btn-ghost { background: rgba(255,255,255,.16); color: #fff; border: 1px solid rgba(255,255,255,.42); backdrop-filter: blur(4px); box-shadow: none; }
+.city-hero-actions .btn svg { width: 18px; height: 18px; }
+@keyframes heroFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+@keyframes heroShimmer {
+  0% { background-position: -140% 0; } 100% { background-position: 240% 0; }
+}
+
+/* ============================================================
+   2) كتاب البطاقات (Postcard Book) — شبكة المجموعة
+   ============================================================ */
+.pb-sheet .pb-progress {
+  display: flex; align-items: center; gap: 9px;
+  background: var(--surface-container, #f6ebf1); border: var(--border-w) solid var(--surface-edge);
+  border-radius: 16px; padding: 10px 14px; margin-bottom: 14px;
+  font-family: var(--font-num); font-weight: 800; font-size: 14px;
+}
+.pb-sheet .pb-progress svg { width: 18px; height: 18px; color: var(--accent-gold); }
+.pb-sheet .pb-howto { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; font-weight: 600; }
+.postcard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.postcard-card {
+  position: relative; overflow: hidden; min-height: 168px;
+  border-radius: var(--radius-lg); background: var(--bg-elevated);
+  border: var(--border-w) solid var(--surface-edge); box-shadow: var(--clay-shadow-outer);
+  padding: 12px; display: flex; flex-direction: column; gap: 4px;
+}
+.postcard-card .pc-landmark { width: 100%; height: 62px; display: flex; align-items: flex-end; justify-content: center; color: var(--accent-gold); margin-bottom: 4px; }
+.postcard-card .pc-landmark svg { width: 100%; height: auto; max-height: 62px; }
+.postcard-card .pc-city { display: flex; align-items: center; gap: 6px; font-family: var(--font-head); font-weight: 800; font-size: 16px; }
+.postcard-card .pc-city .flag { font-size: 18px; }
+.postcard-card .pc-fact { font-size: 11px; line-height: 1.45; color: var(--text-muted); flex: 1; }
+.postcard-card .pc-date { font-size: 10px; color: var(--text-muted); opacity: .8; font-weight: 600; }
+.postcard-card .pc-stamp {
+  position: absolute; top: 8px; right: 8px; width: 26px; height: 26px; border-radius: 8px;
+  display: grid; place-items: center; background: var(--surface-container, #f6ebf1);
+  box-shadow: var(--clay-shadow-inner);
+}
+.postcard-card .pc-stamp svg { width: 15px; height: 15px; color: var(--accent-success); }
+/* المدن المقفلة: ظلّ صامت + «؟ ؟ ؟» */
+.postcard-card.locked {
+  min-height: 168px; background: var(--surface-dim); border-color: var(--surface-edge);
+  color: var(--on-surface-variant); cursor: default;
+}
+.postcard-card.locked .pc-landmark { color: var(--on-surface-variant); opacity: .2; filter: grayscale(1) contrast(.9); }
+.postcard-card.locked .pc-q { position: absolute; top: 0; left: 0; right: 0; height: 82px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 900; color: var(--text-muted); opacity: .5; }
+.postcard-card.locked .pc-city { color: var(--text-muted); }
+.pb-empty { text-align: center; color: var(--text-muted); font-size: 14px; font-weight: 700; padding: 30px 10px; }
+.pb-empty .big { font-size: 44px; margin-bottom: 10px; }
+
+/* ============================================================
+   3) المقدمة السينمائية (Onboarding) — ٣ لقطات
+   ============================================================ */
+.onboard {
+  position: fixed; inset: 0; z-index: 300;
+  display: flex; flex-direction: column;
+  background: var(--bg); background-image:
+    radial-gradient(1000px 500px at 100% -10%, rgba(var(--cell-shadow-rgb),.15), transparent 60%),
+    radial-gradient(760px 500px at -10% 110%, rgba(var(--cell-shadow-rgb),.12), transparent 60%);
+}
+.onboard-frame { flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; text-align: center; padding: 26px 24px 10px; animation: obFade .45s var(--ease-out); }
+.onboard-visual {
+  width: 82%; max-width: 320px; aspect-ratio: 4 / 3;
+  border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--clay-shadow-outer); overflow: hidden; position: relative;
+  border: var(--border-w) solid var(--surface-edge);
+}
+.onboard-visual::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(255,255,255,.25), transparent 45%); pointer-events: none; }
+.onboard-visual .ob-landmark { width: 78%; color: #fff; filter: drop-shadow(0 10px 16px rgba(0,0,0,.18)); animation: heroFloat 5s ease-in-out infinite; }
+.onboard-visual .ob-landmark svg, .onboard-visual .ob-landmark { width: 100%; height: auto; display: block; }
+.onboard-visual.v1 { background: linear-gradient(135deg, #F7B33B, #4FA3E8); }
+.onboard-visual.v2 { background: linear-gradient(135deg, #FF6FA5, #F2705A); }
+.onboard-visual.v3 { background: linear-gradient(135deg, #2EC4A8, #8B5CF6); }
+.onboard-visual .ob-grid { display: grid; grid-template-columns: repeat(3, 40px); gap: 9px; }
+.onboard-visual .ob-grid span { width: 40px; height: 40px; border-radius: 13px; display: grid; place-items: center; font-family: var(--font-num); font-weight: 900; font-size: 20px; color: var(--brand-gold); background: rgba(255,255,255,.88); box-shadow: var(--clay-shadow-outer); }
+.onboard-visual .ob-fan { display: flex; gap: 8px; align-items: center; }
+.onboard-visual .ob-fan svg { width: 92px; height: auto; color: #fff; opacity: .92; filter: drop-shadow(0 8px 12px rgba(0,0,0,.18)); }
+.onboard-title { font-family: var(--font-head); font-size: 27px; font-weight: 800; line-height: 1.2; }
+.onboard-sub { color: var(--text-muted); font-size: 15px; font-weight: 600; max-width: 280px; }
+.onboard-dots { display: flex; gap: 8px; justify-content: center; margin-top: 6px; }
+.onboard-dots .dot { width: 8px; height: 8px; border-radius: 999px; background: var(--surface-edge); transition: width .25s var(--ease-spring), background .25s; }
+.onboard-dots .dot.active { width: 24px; background: var(--primary); }
+.onboard-bar { flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px calc(18px + env(safe-area-inset-bottom)); }
+.onboard-skip { color: var(--text-muted); font-weight: 700; font-size: 14px; background: none; border: none; }
+.onboard-next { min-width: 130px; }
+@keyframes obFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* حركة توهج للكيكر */
+.city-hero-kicker svg { animation: obFade 1s var(--ease-out) both; }

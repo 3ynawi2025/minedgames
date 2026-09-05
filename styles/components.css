@@ -1,0 +1,166 @@
+/* ============ مكونات إضافية (Claymorphism) ============ */
+
+/* عملة (أعلى اللوبي) */
+.coin-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--surface); border: none;
+  border-radius: 999px; padding: 7px 13px; font-weight: 800; font-family: var(--font-num); font-variant-numeric: tabular-nums;
+  box-shadow: var(--clay-shadow-soft), inset 0 1px 0 rgba(255,255,255,.6); cursor: pointer; font-size: 15px; min-height: var(--touch);
+}
+.coin-pill .coin-ico {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffe9a8, #f7b33b 60%, #d98a12);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,.7), 0 1px 2px rgba(0,0,0,.25);
+}
+
+/* بطاقة التحدي اليومي (تدرّج متوهج) */
+.daily-card {
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff; border: none; border-radius: var(--radius-card);
+  padding: 20px; margin-bottom: 18px; text-align: right; cursor: pointer;
+  box-shadow: 0 8px 24px rgba(139,92,246,.35);
+}
+.daily-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(255,255,255,.30), transparent 45%); pointer-events: none; }
+.daily-card h3 { font-size: 20px; margin-bottom: 4px; position: relative; }
+.daily-card p { font-size: 13px; opacity: .92; margin: 0 0 12px; position: relative; }
+.daily-card .pill { position: relative; }
+
+/* بانر إعلان ثابت — «هادئ ومتميّز» بدل مظهر الإعلانات الجماعية */
+.ad-banner {
+  position: fixed; left: 50%; bottom: 64px; transform: translateX(-50%);
+  max-width: 88%; width: auto;
+  height: 34px; background: var(--surface-container-low);
+  border: 1px solid var(--outline-variant);
+  border-radius: 999px;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  padding: 0 14px;
+  font-size: 10px; color: var(--text-muted); font-weight: 600;
+  letter-spacing: .02em; opacity: .82;
+  z-index: 40; box-shadow: var(--clay-shadow-soft);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.ad-banner::before {
+  content: 'إعلان ·'; font-size: 9px; font-weight: 700; color: var(--outline);
+  border: 1px solid var(--outline-variant); border-radius: 6px; padding: 1px 6px;
+  opacity: .8;
+}
+
+/* متجر (شبكة عمودين) */
+.store-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.pack-card {
+  position: relative; overflow: hidden;
+  background: linear-gradient(180deg, var(--surface), var(--surface-container-low));
+  border: var(--border-w) solid color-mix(in srgb, var(--surface-edge) 80%, var(--accent-gold) 8%);
+  border-radius: var(--radius-card); padding: 18px 14px; text-align: center;
+  box-shadow: var(--clay-shadow-soft), inset 0 1px 0 rgba(255,255,255,.6); cursor: pointer; min-height: 44px;
+}
+.pack-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 46%; background: linear-gradient(to bottom, rgba(255,255,255,.45), transparent); pointer-events: none; }
+.pack-card .qty { font-family: var(--font-num); font-size: 28px; font-weight: 900; color: var(--accent-gold); }
+.pack-card .price { font-size: 15px; font-weight: 800; margin: 6px 0 2px; }
+.pack-card .tag { font-size: 11px; color: var(--accent-rose); font-weight: 800; }
+.pack-card.best { border-color: var(--accent-gold); }
+
+/* صف الاستهلاكيات */
+.consume-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid color-mix(in srgb, var(--surface-edge) 55%, transparent); }
+.consume-row .cname { font-weight: 700; }
+.consume-row .ccost { font-size: 13px; color: var(--accent-gold); font-weight: 800; font-family: var(--font-num); }
+
+/* مفتاح تبديل */
+.switch { width: 52px; height: 30px; border-radius: 999px; position: relative; transition: background .2s var(--ease-premium), box-shadow .2s var(--ease-premium); cursor: pointer; background: var(--surface-dim); border: 2px solid var(--surface-edge); flex: 0 0 auto; }
+.switch::before { content: ''; position: absolute; inset: -8px; border-radius: inherit; }
+.switch.on { background: var(--secondary); border-color: var(--secondary); }
+.switch .knob { width: 24px; height: 24px; border-radius: 50%; background: #fff; position: absolute; top: 1px; left: 2px; transition: left .2s var(--ease-spring-soft), transform .2s var(--ease-spring-soft); box-shadow: 0 2px 4px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.8); }
+.switch.on .knob { left: 24px; }
+
+/* لمعة علوية للزر الرئيسي */
+.btn-primary { position: relative; overflow: hidden; border: 3px solid var(--primary-press); }
+.btn-primary::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%; background: linear-gradient(to bottom, rgba(255,255,255,.4), transparent); pointer-events: none; }
+
+/* تسريع الأجهزة + مناطق آمنة */
+.board, .cell { transform: translateZ(0); will-change: transform; }
+.tabbar { padding-bottom: max(8px, env(safe-area-inset-bottom)); }
+.ad-banner { bottom: calc(58px + env(safe-area-inset-bottom)); }
+
+/* سحق وتمدد عند المطابقة */
+@keyframes squash { 0%{transform:scale(1,1)} 40%{transform:scale(1.25,.7)} 70%{transform:scale(.85,1.15)} 100%{transform:scale(1,1)} }
+.cell.squash { animation: squash .3s var(--ease-out); }
+
+/* دخول متتابع */
+@keyframes cellIn { from { opacity: 0; transform: scale(.5) translateY(8px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+.cell.enter { animation: cellIn .3s var(--ease-spring) backwards; }
+
+/* ===== Stitch-faithful design (Material Symbols + rich cards) ===== */
+.material-symbols-outlined { font-family: 'Material Symbols Outlined'; font-weight: normal; font-style: normal; display: inline-block; line-height: 1; letter-spacing: normal; text-transform: none; white-space: nowrap; word-wrap: normal; direction: ltr; -webkit-font-smoothing: antialiased; vertical-align: middle; }
+
+/* بطاقة التحدي اليومي: تدرّج + زجاج + نار */
+.daily-card { padding: 3px; background: linear-gradient(90deg, #F2705A, #FF6FA5); border: none; box-shadow: var(--clay-shadow-outer); cursor: pointer; }
+.daily-card .inner { background: rgba(255,255,255,.2); backdrop-filter: blur(6px); border-radius: 21px; padding: 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; color: #fff; }
+.daily-card .fire { background: rgba(255,255,255,.3); border-radius: 16px; padding: 8px; box-shadow: var(--clay-shadow-inner); }
+.daily-card .fire .material-symbols-outlined { font-size: 30px; }
+.daily-card h3 { color: #fff; }
+.daily-card p { color: rgba(255,255,255,.9); }
+.daily-card .go { background: #fff; color: #F2705A; font-family: var(--font-head); font-weight: 700; padding: 10px 20px; border-radius: 16px; box-shadow: var(--clay-shadow-outer); white-space: nowrap; }
+
+/* تقويم السلسلة */
+.streak-card { background: linear-gradient(180deg, var(--surface), var(--surface-container-low)); border-radius: 24px; padding: 18px; box-shadow: var(--clay-shadow-soft), inset 0 1px 0 rgba(255,255,255,.6); border: 3px solid color-mix(in srgb, var(--surface-container-highest, #eae0e6) 85%, var(--accent-rose) 6%); margin-bottom: 18px; }
+.streak-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.streak-head h3 { font-family: var(--font-head); font-size: 18px; }
+.streak-pill { display: flex; align-items: center; gap: 6px; color: #F2705A; background: #ffdad4; padding: 4px 12px; border-radius: 999px; box-shadow: var(--clay-shadow-inner); font-weight: 800; }
+.streak-days { display: flex; justify-content: space-between; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+.streak-day { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; min-width: 48px; }
+.streak-day .day-box { width: 46px; height: 46px; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: var(--clay-shadow-outer); }
+.streak-day .day-box.done { background: #F2705A; color: #fff; }
+.streak-day .day-box.today { background: #6b38d4; color: #fff; border: 4px solid #fff; width: 52px; height: 52px; }
+.streak-day .day-box.locked { background: var(--surface-variant, #eae0e6); color: var(--on-surface-variant, #57423e); box-shadow: var(--clay-shadow-inner); opacity: .6; }
+.streak-day .day-lbl { font-size: 11px; font-weight: 800; color: var(--text-muted); }
+.streak-day .day-lbl.active { color: #6b38d4; }
+.streak-day .material-symbols-outlined { font-size: 20px; }
+
+/* بطاقة لعبة غنية (بلاطة متدرجة + ضبابية + زر تشغيل) */
+.game-card { padding: 14px; }
+.game-card .tile { border-radius: 16px; padding: 18px; box-shadow: var(--clay-shadow-inner); position: relative; overflow: hidden; min-height: 120px; display: flex; align-items: center; justify-content: center; }
+.game-card .tile .blob { position: absolute; width: 96px; height: 96px; border-radius: 50%; filter: blur(24px); opacity: .5; }
+.game-card .tile .big-ico { width: 76px; height: 76px; border-radius: 22px; display: flex; align-items: center; justify-content: center; box-shadow: var(--clay-shadow-outer); z-index: 2; }
+.game-card .tile .big-ico .material-symbols-outlined { font-size: 40px; color: #fff; }
+.game-card .tile .big-ico .num { font-family: var(--font-num); font-weight: 900; font-size: 34px; color: #fff; }
+.game-card .meta { display: flex; justify-content: space-between; align-items: flex-end; padding: 12px 6px 0; }
+.game-card .meta h3 { font-family: var(--font-head); font-size: 17px; }
+.game-card .meta p { font-size: 12px; color: var(--text-muted); }
+.game-card .play { width: 44px; height: 44px; border-radius: 50%; background: var(--surface-variant, #eae0e6); color: var(--on-surface); display: flex; align-items: center; justify-content: center; box-shadow: var(--clay-shadow-outer); }
+
+/* شريط التنقل 4 تبويبات */
+.tabbar .tab .material-symbols-outlined { font-size: 24px; margin-bottom: 2px; }
+.tabbar .tab.active { color: var(--primary-text); }
+.tabbar .tab.active .t-ico { background: var(--primary-container, #f2705a); color: var(--on-primary-container, #650701); border-radius: 12px; padding: 4px 12px; }
+/* اللوبي: هيدر + شبكة */
+.lobby-header { display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 40; padding: calc(16px + env(safe-area-inset-top, 0px)) 4px 12px; background: var(--bg); }
+.lobby-logo { width: 46px; height: 46px; border-radius: 14px; background: #fff; overflow: hidden; color: #fff; display: flex; align-items: center; justify-content: center; box-shadow: var(--clay-shadow-outer); flex: 0 0 auto; }
+.lobby-logo .material-symbols-outlined { font-size: 26px; }
+.lobby-title { font-family: var(--font-head); font-weight: 800; font-size: 22px; color: #F2705A; flex: 1; }
+.coin-pill { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-num); font-weight: 800; font-size: 15px; }
+.coin-pill .material-symbols-outlined { color: #c98c0d; font-size: 20px; }
+.coin-pill b { font-weight: 800; }
+.games-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.lobby-h2 { font-family: var(--font-head); font-size: 20px; margin: 18px 4px 12px; }
+/* شاشة الفوز (عالية الدقة) */
+.result-overlay { background: radial-gradient(circle at 50% 30%, rgba(247,179,59,.16), rgba(30,20,48,.6)); }
+.result-card { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 28px 22px; text-align: center; animation: celebrate .55s var(--ease-spring); }
+.result-trophy { position: relative; width: 110px; height: 110px; border-radius: 50%; background: var(--secondary-container, #8455ef); box-shadow: var(--clay-shadow-outer); display: flex; align-items: center; justify-content: center; animation: floaty 3s ease-in-out infinite; font-size: 52px; }
+.result-trophy::before { content: ''; position: absolute; inset: -16px; border-radius: 50%; background: rgba(255,186,66,.45); filter: blur(22px); z-index: -1; }
+.result-title { font-family: var(--font-head); font-size: 38px; font-weight: 800; color: #F2705A; -webkit-text-stroke: 2px #fff; text-shadow: 0 8px 16px rgba(0,0,0,.15); paint-order: stroke fill; line-height: 1.1; }
+.result-subtitle { color: var(--text-muted); font-weight: 600; }
+.result-summary { width: 100%; background: var(--surface-container, #f6ebf1); border: 4px solid var(--surface-container-high, #f0e5eb); border-radius: 24px; padding: 16px; box-shadow: var(--clay-shadow-outer); display: flex; flex-direction: column; gap: 12px; }
+.result-summary-head { display: flex; justify-content: space-between; align-items: center; }
+.result-summary-head h2 { font-family: var(--font-head); font-size: 18px; color: #6b38d4; }
+.result-reward { display: inline-flex; align-items: center; gap: 6px; background: var(--emerald-bg, #F1F7F2); padding: 6px 14px; border-radius: 999px; box-shadow: var(--clay-shadow-inner); font-weight: 900; color: #1F9D6B; font-family: var(--font-num); }
+.result-reward .material-symbols-outlined { color: #ffba42; font-size: 20px; }
+.result-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.result-stat { display: flex; flex-direction: column; align-items: center; gap: 4px; background: var(--surface, #fff); border-radius: 14px; padding: 12px; box-shadow: var(--clay-shadow-outer); }
+.result-stat .material-symbols-outlined { color: #c98c0d; font-size: 26px; }
+.result-stat .lbl { font-size: 12px; color: var(--text-muted); font-weight: 700; }
+.result-stat b { font-family: var(--font-num); font-size: 22px; font-weight: 900; }
+.result-note { color: var(--text-muted); font-size: 13px; font-weight: 600; }
+.btns .btn .material-symbols-outlined { font-size: 20px; }
+@keyframes floaty { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.ccost .material-symbols-outlined, .qty .material-symbols-outlined { color: #c98c0d; }

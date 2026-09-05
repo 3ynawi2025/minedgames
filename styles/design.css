@@ -1,0 +1,498 @@
+/* ============================================================
+   design.css — تطبيق تصميمات Stitch الأصلية (claymorphism + RTL)
+   يُحمَّل آخرًا لتجاوز أنماط اللوحة/اللعبة السابقة.
+   مرجع الألوان: primary #a73928 · primary-container #f2705a
+   secondary #6b38d4 · background #fff7fa · tertiary #c98c0d
+   ============================================================ */
+
+/* --- أيقونات Material: تعبئة افتراضية 1 (كما في التصميم) --- */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+  font-family: 'Material Symbols Outlined';
+}
+.tab .t-ico .material-symbols-outlined { font-size: 24px; }
+
+/* ============================================================
+   1) اللوبي — brain_match_dubai_home
+   ============================================================ */
+
+/* الشريط العلوي: خلفية سطح + ظلّ clay (بدون حد رمادي) */
+.lobby-header {
+  position: sticky; top: 0; z-index: 40;
+  display: flex; align-items: center; gap: 12px;
+  padding: calc(14px + env(safe-area-inset-top, 0px)) 8px 12px;
+  background: var(--surface, #fff7fa);
+  box-shadow:
+    0 2px 6px rgba(0,0,0,.04),
+    inset 4px 4px 8px rgba(255,255,255,.5),
+    inset -4px -4px 8px rgba(0,0,0,.06);
+}
+.lobby-title {
+  font-family: var(--font-head);
+  font-weight: 800; font-size: 22px; color: var(--primary-text, #a73928);
+  flex: 1; letter-spacing: -.02em;
+}
+.lobby-header .coin-pill { font-family: var(--font-num); }
+
+/* بطاقة «رحلة دبي» — hero البطلة */
+.city-hero {
+  position: relative; overflow: hidden;
+  background: var(--surface-container, #f6ebf1);
+  border: 3px solid var(--surface-variant, #eae0e6);
+  border-radius: 24px;
+  box-shadow: 0 10px 20px rgba(0,0,0,.1), inset 4px 4px 8px rgba(255,255,255,.5), inset -4px -4px 8px rgba(0,0,0,.08);
+  padding: 16px; margin: 0 0 18px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.city-hero::before { content: none; }   /* إزالة التدرّج القديم */
+
+.hero-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.hero-head h2 { font-family: var(--font-head); font-size: 26px; font-weight: 800; color: var(--on-surface, #1f1a1e); margin: 0; }
+.hero-head p { margin: 4px 0 0; font-size: 13px; font-weight: 600; color: var(--on-surface-variant, #57423e); opacity: .82; }
+
+.hero-ring {
+  position: relative; width: 64px; height: 64px; flex: 0 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: var(--surface, #fff7fa);
+  box-shadow: inset 4px 4px 8px rgba(0,0,0,.07), inset -4px -4px 8px rgba(255,255,255,.6);
+}
+.hero-ring .ring-svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.hero-ring .ring-track { color: var(--surface-variant, #eae0e6); }
+.hero-ring .ring-fill { color: var(--secondary, #6b38d4); }
+.hero-ring .ring-pct { position: relative; z-index: 2; font-family: var(--font-ui); font-weight: 800; font-size: 12px; color: var(--secondary, #6b38d4); }
+
+.hero-scene {
+  position: relative; height: 128px; border-radius: 14px;
+  background: linear-gradient(135deg, var(--primary-fixed, #ffdad4), var(--surface-variant, #eae0e6));
+  box-shadow: inset 4px 4px 8px rgba(0,0,0,.06), inset -4px -4px 8px rgba(255,255,255,.55);
+  overflow: hidden; display: flex; align-items: flex-end; justify-content: center;
+}
+.hero-scene::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 44px;
+  background: linear-gradient(to top, var(--surface-container, #f6ebf1), transparent);
+  pointer-events: none;
+}
+.hero-scene .hero-landmark {
+  width: 74%; max-width: 320px; position: relative; z-index: 1;
+  color: var(--hero-a, #a73928); opacity: .5; filter: drop-shadow(0 4px 8px rgba(0,0,0,.10));
+  animation: heroFloat 5.5s ease-in-out infinite;
+}
+.hero-scene .hero-landmark svg { width: 100%; height: auto; display: block; }
+
+.hero-actions { display: flex; flex-direction: column; gap: 10px; }
+/* تقييد أي SVG داخل الأزرار (يمنع تمدّد الأيقونات) */
+.btn svg { width: 18px; height: 18px; flex: 0 0 auto; }
+.hero-book svg { width: 18px; height: 18px; }
+.sheet h3 svg { width: 24px; height: 24px; vertical-align: -5px; }
+.sheet .sub svg { width: 16px; height: 16px; vertical-align: -2px; }
+.consume-row .cname svg { width: 20px; height: 20px; vertical-align: -4px; }
+.pack-card svg { width: 20px; height: 20px; vertical-align: -4px; }
+.hero-go {
+  width: 100%;
+  background: linear-gradient(180deg, var(--primary-text, #a73928), #86211a);
+  color: #fff;
+  box-shadow: 0 8px 15px rgba(167,57,40,.30), inset 4px 4px 8px rgba(255,255,255,.4), inset -4px -4px 8px rgba(0,0,0,.15);
+}
+.hero-go:active { transform: scale(.96); }
+.hero-book { width: 100%; }
+
+/* عنوان قسم الألعاب */
+.lobby-h2 { font-family: var(--font-head); font-size: 20px; color: var(--on-surface, #1f1a1e); margin: 18px 4px 12px; }
+
+/* بطاقات الألعاب (بطاقات أفقية كما في التصميم) */
+.game-card.card {
+  background: var(--surface, #fff7fa);
+  border: 3px solid var(--surface-variant, #eae0e6);
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,.1), inset 4px 4px 8px rgba(255,255,255,.5), inset -4px -4px 8px rgba(0,0,0,.08);
+  padding: 16px; display: flex; align-items: center; gap: 14px;
+  cursor: pointer; width: 100%; text-align: left;
+  transition: transform .15s var(--ease-spring-soft), border-color .2s;
+}
+.game-card.card:hover { border-color: var(--secondary, #6b38d4); }
+.game-card.card:active { transform: scale(.98); }
+.game-card.card .tile,
+.game-card .tile {
+  width: 64px; height: 64px; min-height: 64px; max-height: 64px;
+  padding: 0; flex: 0 0 auto; position: relative; overflow: hidden;
+  box-shadow: inset 4px 4px 8px rgba(0,0,0,.06), inset -4px -4px 8px rgba(255,255,255,.55);
+}
+.game-card .tile .blob { position: absolute; width: 60px; height: 60px; border-radius: 50%; filter: blur(14px); opacity: .5; top: 2px; left: 2px; }
+.game-card.card .tile .big-ico,
+.game-card .tile .big-ico {
+  position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 16px;
+  padding: 0; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 14px rgba(0,0,0,.15), inset 2px 2px 4px rgba(255,255,255,.4), inset -2px -2px 4px rgba(0,0,0,.1);
+  z-index: 1;
+}
+.game-card .tile .big-ico .material-symbols-outlined { font-size: 30px; }
+.game-card .tile .big-ico .num { font-family: var(--font-num); font-weight: 900; font-size: 22px; }
+.game-card .meta { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.game-card .meta .mtop h3 { font-family: var(--font-head); font-size: 17px; font-weight: 800; color: var(--on-surface, #1f1a1e); margin: 0; line-height: 1.2; }
+.game-card .meta .mtop p { font-size: 12px; color: var(--on-surface-variant, #57423e); opacity: .7; margin: 2px 0 0; }
+.game-card .meta .play {
+  width: 30px; height: 30px; border-radius: 50%; flex: 0 0 auto;
+  background: var(--surface-container, #f6ebf1); color: var(--primary-text, #a73928);
+  display: flex; align-items: center; justify-content: center; box-shadow: var(--clay-shadow-inner);
+}
+.game-card .meta .play .material-symbols-outlined { font-size: 20px; }
+
+/* شريط التنقل العائم (4 تبويبات) */
+.tabbar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+  display: flex; justify-content: space-around; align-items: center;
+  background: var(--surface-container, #f6ebf1);
+  border-radius: 24px 24px 0 0;
+  padding: 8px 12px calc(10px + env(safe-area-inset-bottom));
+  box-shadow: 0 -10px 20px rgba(0,0,0,.05), inset 2px 2px 4px rgba(255,255,255,.3);
+}
+.tabbar::before { content: none; }   /* إزالة الخط العلوي القديم */
+.tab {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  font-size: 11px; font-weight: 700; color: var(--on-surface-variant, #57423e);
+  padding: 6px 16px; min-height: 44px; min-width: 44px; border-radius: 12px;
+  transition: background .2s var(--ease-premium), color .2s var(--ease-premium), transform .15s var(--ease-spring-soft);
+}
+.tab:active { transform: scale(.94); }
+.tab .t-lbl { font-family: var(--font-ui); font-weight: 700; }
+.tabbar .tab.active {
+  background: var(--secondary-container, #8455ef);
+  color: var(--on-secondary-container, #fffbff);
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,.12);
+}
+.tabbar .tab.active .t-ico { background: transparent; color: inherit; padding: 0; border-radius: 0; }
+/* ============================================================
+   2) شاشة اللعبة — number_match_dubai_edition_gameplay
+   ============================================================ */
+
+/* الشريط العلوي: surface + حافة سفلية مقوّسة + ظلّ clay */
+.game-top {
+  position: sticky; top: 0; z-index: 40;
+  display: flex; align-items: center; gap: 10px;
+  background: var(--surface, #fff7fa);
+  border-radius: 0 0 18px 18px;
+  padding: 12px 16px;
+  padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  box-shadow: 0 10px 20px rgba(0,0,0,.08), inset 4px 4px 8px rgba(255,255,255,.5), inset -4px -4px 8px rgba(0,0,0,.06);
+  margin-bottom: 14px;
+}
+.game-top .gtitle h1 { font-family: var(--font-head); font-weight: 700; font-size: 19px; color: var(--primary-text, #a73928); }
+.game-top .gtitle .sub { font-size: 12px; color: var(--on-surface-variant, #57423e); font-weight: 600; }
+.game-top .coin-pill { background: var(--surface-variant, #eae0e6); border-radius: 999px; padding: 7px 14px; box-shadow: var(--clay-shadow-soft); }
+
+/* بانر المدينة (تدرّج من primary-fixed إلى secondary-fixed) */
+.city-banner {
+  border-radius: 12px; padding: 12px 16px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: var(--font-head); font-weight: 700;
+  box-shadow: 0 10px 20px rgba(0,0,0,.08), inset 4px 4px 8px rgba(255,255,255,.5), inset -4px -4px 8px rgba(0,0,0,.08);
+  position: relative; overflow: hidden; margin-bottom: 14px; z-index: 1;
+  background: linear-gradient(90deg, var(--primary-fixed, #ffdad4), var(--secondary-fixed, #e9ddff));
+  color: var(--on-primary-container, #650701);
+}
+.city-banner .banner-icon { width: 42px; height: 42px; flex: 0 0 auto; display: inline-flex; }
+.city-banner .banner-icon svg { width: 100%; height: 100%; }
+
+/* اللوحة — إطار مزدوج (double-bezel) مثل التصميم */
+.board-wrap {
+  position: relative;
+  background: var(--surface-container, #f6ebf1);
+  border: 3px solid var(--surface-container-high, #f0e5eb);
+  border-radius: 24px; padding: 16px;
+  box-shadow: 0 10px 20px rgba(0,0,0,.1), inset 4px 4px 8px rgba(255,255,255,.5), inset -4px -4px 8px rgba(0,0,0,.08);
+}
+.board {
+  background: var(--surface-variant, #eae0e6);
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: inset 4px 4px 8px rgba(0,0,0,.08), inset -4px -4px 8px rgba(255,255,255,.6);
+}
+/* خلايا اللعبة (أبيض clay) */
+.board .cell {
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(0,0,0,.05), inset 2px 2px 4px rgba(255,255,255,.8), inset -2px -2px 4px rgba(0,0,0,.05);
+  border: none;
+  font-family: 'Nunito Sans', var(--font-num);
+}
+.board .cell.selected {
+  border: 2px solid var(--secondary, #6b38d4);
+  background: var(--cell-selected-bg, #fff0ed);
+  box-shadow: 0 8px 16px rgba(0,0,0,.1), inset 2px 2px 4px rgba(255,255,255,.8), inset -2px -2px 4px rgba(0,0,0,.05);
+  transform: translateY(-2px);
+}
+.board .cell.enter { animation: cellIn .3s var(--ease-spring) backwards; }
+
+/* طبقة خطوط الاتصال — تدرّج مائي متموّج */
+.link-layer {
+  position: absolute; top: 20px; left: 20px;
+  width: calc(100% - 40px); height: calc(100% - 40px);
+  pointer-events: none; z-index: 5; overflow: visible;
+}
+.link-layer line {
+  stroke: var(--accent-info, #8455ef);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 12 9;
+  opacity: .82;
+  filter: drop-shadow(0 0 5px rgba(132,85,239,.6));
+  animation: threadFlow 1s linear infinite;
+}
+.cell.matchable { animation: matchPulse 1s var(--ease-out) infinite; box-shadow: 0 0 0 3px rgba(132,85,239,.4); }
+
+/* تلميح واضح — يتجاوز خلفية الخلية البيضاء (تحديد ذهبي متوهج + نبض) */
+.board .cell.hint {
+  background: linear-gradient(135deg, #FFE9A8, #FFC94D) !important;
+  border: 2px solid var(--accent-gold, #C98C0D) !important;
+  color: #432B00 !important;
+  animation: hintPulse .6s var(--ease-out) 4;
+  box-shadow: 0 0 0 5px rgba(201,140,13,.35), 0 6px 16px rgba(0,0,0,.18) !important;
+  z-index: 6;
+}
+
+/* شريط الأدوات (أزرار أسفل اللعبة) */
+.toolbar {
+  display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; justify-content: center;
+}
+.toolbar .btn {
+  flex: 1 1 auto; min-width: 0; padding: 12px 10px; font-size: 13px; min-height: 44px;
+  display: flex; flex-direction: column; align-items: center; gap: 4px; font-family: var(--font-head);
+}
+.toolbar .btn .material-symbols-outlined { font-size: 24px; }
+
+/* ============================================================
+   3) كتاب البطاقات — world_postcards_collection
+   ============================================================ */
+.pb-sheet .pb-progress {
+  position: relative; overflow: hidden;
+  background: var(--surface-container, #f6ebf1);
+  border-radius: 24px; padding: 16px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  box-shadow: var(--clay-shadow-outer);
+  margin-bottom: 16px;
+}
+.pb-sheet .pb-progress .pb-glow { position: absolute; width: 128px; height: 128px; border-radius: 50%; filter: blur(40px); opacity: .2; pointer-events: none; }
+.pb-sheet .pb-progress .pb-glow.g1 { top: -40px; left: -40px; background: var(--breeze-primary, #F2705A); }
+.pb-sheet .pb-progress .pb-glow.g2 { bottom: -40px; right: -40px; background: var(--dusk-primary, #B48CFF); }
+.pb-sheet .pb-progress h2 { font-family: var(--font-head); font-size: 20px; font-weight: 800; color: var(--on-surface, #1f1a1e); margin: 0; position: relative; z-index: 1; }
+.pb-sheet .pb-bar { width: 100%; height: 14px; border-radius: 999px; background: var(--surface-container-highest, #eae0e6); box-shadow: inset 3px 3px 6px rgba(0,0,0,.08), inset -3px -3px 6px rgba(255,255,255,.6); position: relative; z-index: 1; overflow: hidden; }
+.pb-sheet .pb-bar-fill {
+  height: 100%; border-radius: 999px;
+  background: linear-gradient(90deg, var(--breeze-primary, #F2705A), var(--candy-primary, #FF6FA5));
+  box-shadow: inset 0 2px 4px rgba(255,255,255,.4);
+  transition: width .5s var(--ease-expo-out);
+}
+.pb-sheet .pb-howto { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; font-weight: 600; }
+.postcard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.postcard-card {
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; gap: 4px; padding: 8px;
+  border-radius: 24px; aspect-ratio: 3 / 4;
+  background: var(--surface, #fff7fa);
+  border: 3px solid var(--surface-container-high, #f0e5eb);
+  box-shadow: 0 10px 20px rgba(0,0,0,.1), inset 4px 4px 8px rgba(255,255,255,.5), inset -4px -4px 8px rgba(0,0,0,.08);
+}
+.postcard-card .pc-body { position: absolute; inset: 8px; display: flex; flex-direction: column; gap: 4px; }
+.postcard-card .pc-photo {
+  flex: 1; position: relative; overflow: hidden; border-radius: 16px;
+  background: var(--candy-bg, #FFF0F5);
+  box-shadow: inset 3px 3px 6px rgba(0,0,0,.08), inset -3px -3px 6px rgba(255,255,255,.6);
+}
+.postcard-card .pc-landmark { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center; color: var(--primary-text, #a73928); opacity: .6; padding-bottom: 8px; }
+.postcard-card .pc-landmark svg { width: 90%; height: auto; }
+.postcard-card .pc-stamp {
+  position: absolute; top: 8px; right: 8px; width: 30px; height: 40px; border-radius: 4px;
+  background: #fff; border: 2px dashed var(--outline-variant, #dfc0ba);
+  display: flex; align-items: center; justify-content: center; transform: rotate(6deg);
+  font-size: 11px; font-weight: 800; box-shadow: 0 3px 6px rgba(0,0,0,.12);
+}
+.postcard-card .pc-city { display: flex; align-items: center; justify-content: center; gap: 6px; font-family: var(--font-head); font-weight: 800; font-size: 16px; color: var(--primary-container, #f2705a); }
+.postcard-card .pc-city .flag { font-size: 16px; }
+.postcard-card .pc-fact { font-size: 11px; line-height: 1.4; color: var(--text-muted); text-align: center; }
+.postcard-card .pc-date { font-size: 10px; color: var(--text-muted); opacity: .8; font-weight: 600; text-align: center; }
+
+/* بطاقة مقفلة */
+.postcard-card.locked {
+  background: var(--surface-variant, #eae0e6);
+  border-color: var(--surface-container-high, #f0e5eb);
+  box-shadow: 0 5px 10px rgba(0,0,0,.05), inset 2px 2px 4px rgba(255,255,255,.2), inset -2px -2px 4px rgba(0,0,0,.05);
+  opacity: .9; cursor: default;
+}
+.postcard-card .pc-photo .pc-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.postcard-card.locked .pc-img {
+  opacity: .55;
+  filter: grayscale(.9) saturate(.4) brightness(1.06);
+}
+.postcard-card.locked .pc-lock-badge {
+  position: absolute; top: 10px; left: 10px; z-index: 2;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(255, 255, 255, .9);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+}
+.postcard-card.locked .pc-city { color: var(--text-muted); font-size: 13px; }
+.postcard-card.locked .pc-date { color: var(--text-muted); opacity: .75; }
+.pb-empty { text-align: center; color: var(--text-muted); font-size: 14px; font-weight: 700; padding: 30px 10px; }
+.pb-empty .big { font-size: 44px; margin-bottom: 10px; }
+
+/* ============================================================
+   4) سودوكو — sudoku_dubai_city_planner_edition
+   ============================================================ */
+.s-grid {
+  border: none; border-radius: 14px;
+  box-shadow: inset 4px 4px 8px rgba(0,0,0,.08), inset -4px -4px 8px rgba(255,255,255,.5);
+}
+.s-grid .cell {
+  border: 0.5px solid var(--surface-edge);
+  background: var(--surface, #fff7fa);
+  font-family: 'Nunito Sans', var(--font-num);
+}
+.s-grid .cell.selected { background: var(--secondary-container, #8455ef); color: #fff; border: 2px solid var(--secondary, #6b38d4); }
+.s-grid .cell.given { color: var(--primary-text, #a73928); font-weight: 900; }
+
+/* لوحة الأرقام */
+.numpad { display: grid; grid-template-columns: repeat(9, 1fr); gap: 8px; margin-top: 14px; }
+.numpad button {
+  aspect-ratio: 1; border-radius: 14px; font-family: 'Nunito Sans', var(--font-num); font-weight: 800;
+  background: var(--surface-container, #f6ebf1); color: var(--primary-text, #a73928); border: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,.08), inset 2px 2px 4px rgba(255,255,255,.5), inset -2px -2px 4px rgba(0,0,0,.08);
+  min-height: 40px; font-variant-numeric: tabular-nums;
+}
+.numpad button:active { transform: scale(.9); }
+.numpad button.on { background: var(--secondary-container, #8455ef); color: #fff; }
+.numpad button.note-on { background: var(--secondary, #6b38d4); color: var(--on-secondary, #fff); }
+
+/* ============================================================
+   5) 2048 — 2048_skyline_edition (أفق المدينة الداكن + بلاطات مرجانية/بنفسجية)
+   ============================================================ */
+.game-screen.game-2048 {
+  background: linear-gradient(180deg, #12141B, #1E1430);
+  color: #f9eef4;
+  min-height: 100dvh;
+  position: relative;
+}
+.game-screen.game-2048 .game-top { background: rgba(255,255,255,.08); backdrop-filter: blur(10px); }
+.game-screen.game-2048 .game-top .gtitle h1 { color: #ffb4a6; }
+.game-screen.game-2048 .game-top .gtitle .sub { color: rgba(255,255,255,.7); }
+.game-screen.game-2048 .game-top .coin-pill { background: rgba(255,255,255,.14); color: #ffb4a6; }
+.game-screen.game-2048 .game-top .back { background: rgba(255,255,255,.12); color: #ffb4a6; }
+.game-screen.game-2048 .board-wrap {
+  background: rgba(30,20,48,.6); border: none;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 20px rgba(0,0,0,.2), inset 4px 4px 8px rgba(255,255,255,.1), inset -4px -4px 8px rgba(0,0,0,.3);
+}
+.game-screen.game-2048 .board {
+  background: transparent; box-shadow: none; padding: 8px;
+}
+.game-screen.game-2048 .board .cell {
+  background: rgba(18,20,27,.4); border: none;
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,.2), inset -2px -2px 4px rgba(255,255,255,.05);
+  color: #fff;
+}
+
+/* HUD داكن على شاشة 2048 */
+.game-screen.game-2048 .hud .box {
+  background: rgba(255,255,255,.08); color: #f9eef4;
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,.3), inset -2px -2px 4px rgba(255,255,255,.06);
+}
+.game-screen.game-2048 .hud .box .k { color: rgba(255,255,255,.7); }
+.game-screen.game-2048 .hud .box .v { color: #ffb4a6; }
+.game-screen.game-2048 .toolbar .btn { color: #ffb4a6; }
+/* بلاطات 2048 — لوحة أفق المدينة (تدرّجات مرجانية/بنفسجية) */
+.board[data-game="2048"] .cell[data-val="2"]    { background: linear-gradient(135deg,#FFB4A6,#F2705A) !important; color: #400200 !important; }
+.board[data-game="2048"] .cell[data-val="4"]    { background: linear-gradient(135deg,#F2705A,#A73928) !important; color: #FFFFFF !important; }
+.board[data-game="2048"] .cell[data-val="8"]    { background: linear-gradient(135deg,#FF6FA5,#EC4899) !important; color: #FFFFFF !important; }
+.board[data-game="2048"] .cell[data-val="16"]   { background: linear-gradient(135deg,#B48CFF,#8455EF) !important; color: #FFFFFF !important; }
+.board[data-game="2048"] .cell[data-val="32"]   { background: linear-gradient(135deg,#8455EF,#6B38D4) !important; color: #FFFFFF !important; }
+.board[data-game="2048"] .cell[data-val="64"]   { background: linear-gradient(135deg,#D0BCFF,#5516BE) !important; color: #FFFFFF !important; }
+.board[data-game="2048"] .cell[data-val="128"]  { background: linear-gradient(135deg,#7B9CFF,#23005C) !important; color: #FFFFFF !important; }
+.board[data-game="2048"] .cell[data-val="256"]  { background: linear-gradient(135deg,#7B9CFF,#23005C) !important; color: #FFFFFF !important; }
+.board[data-game="2048"] .cell[data-val="512"]  { background: linear-gradient(135deg,#8B5CF6,#45018A) !important; color: #FFFFFF !important; }
+.board[data-game="2048"] .cell[data-val="1024"] { background: linear-gradient(135deg,#9B7BFF,#3A1A6E) !important; color: #FFFFFF !important; }
+.board[data-game="2048"] .cell[data-val="2048"] { background: linear-gradient(135deg,#B48CFF,#23005C) !important; color: #FFFFFF !important; }
+
+
+/* ============================================================
+   6) المقدمة السينمائية — first_trip_to_dubai_onboarding
+   ============================================================ */
+.onboard {
+  position: fixed; inset: 0; z-index: 300;
+  display: flex; flex-direction: column;
+  background: linear-gradient(180deg, #12141B, #1E1430);
+  color: #fff; overflow: hidden;
+}
+.onboard::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(120% 60% at 50% 0%, rgba(123,156,255,.18), transparent 60%), radial-gradient(100% 50% at 50% 100%, rgba(180,140,255,.15), transparent 60%);
+}
+.onboard-topbar {
+  position: relative; z-index: 2; display: flex; justify-content: space-between;
+  padding: calc(12px + env(safe-area-inset-top,0px)) 20px 8px;
+}
+.onboard-circle {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255,255,255,.12); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center; color: #fff;
+}
+.onboard-circle .material-symbols-outlined { font-size: 22px; }
+.onboard-main {
+  position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column;
+  justify-content: space-between; padding: 12px 20px calc(16px + env(safe-area-inset-bottom));
+  gap: 16px;
+}
+.onboard-head { text-align: center; margin-top: 28px; }
+.onboard-head .onboard-title {
+  font-family: var(--font-head); font-size: 34px; font-weight: 800; line-height: 1.15;
+  color: #fff; margin: 0 0 8px; text-shadow: 0 4px 12px rgba(0,0,0,.35);
+}
+.onboard-head .onboard-sub { font-size: 17px; font-weight: 600; color: rgba(255,255,255,.9); margin: 0; }
+.onboard-frame {
+  flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0;
+}
+.onboard-visual { width: 78%; max-width: 320px; }
+.onboard-visual .ob-landmark { width: 100%; color: #fff; opacity: .9; filter: drop-shadow(0 12px 20px rgba(0,0,0,.3)); }
+.onboard-visual .ob-landmark svg { width: 100%; height: auto; }
+.onboard-visual .ob-grid { display: grid; grid-template-columns: repeat(3, 44px); gap: 10px; justify-content: center; }
+.onboard-visual .ob-grid span { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; font-family: var(--font-num); font-weight: 900; font-size: 20px; color: #fff; background: rgba(255,255,255,.14); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.25); }
+.onboard-dots { display: flex; gap: 8px; justify-content: center; }
+.onboard-dots .dot { width: 8px; height: 8px; border-radius: 999px; background: rgba(255,255,255,.3); transition: width .25s var(--ease-spring), background .25s; }
+.onboard-dots .dot.active { width: 26px; background: #fff; }
+
+/* البطاقة السفلية claymorphism */
+.onboard-card {
+  background: var(--surface-container-lowest, #ffffff);
+  border-radius: 32px; padding: 16px; position: relative; overflow: hidden;
+  border: 2px solid rgba(255,255,255,.5); backdrop-filter: blur(12px);
+  box-shadow: 0 10px 20px rgba(0,0,0,.1), inset 4px 4px 8px rgba(255,255,255,.5), inset -4px -4px 8px rgba(0,0,0,.1);
+  display: flex; flex-direction: column; gap: 14px;
+}
+.onboard-dest {
+  background: var(--surface-container, #f6ebf1); border-radius: 16px; padding: 12px;
+  display: flex; align-items: center; gap: 12px;
+  box-shadow: inset 4px 4px 8px rgba(0,0,0,.06), inset -4px -4px 8px rgba(255,255,255,.6);
+  border: 1px solid rgba(255,255,255,.4);
+}
+.onboard-dest .ob-dest-ico { width: 48px; height: 48px; border-radius: 50%; background: rgba(79,163,232,.2); display: flex; align-items: center; justify-content: center; color: var(--sky, #4FA3E8); }
+.onboard-dest .ob-dest-ico .material-symbols-outlined { font-size: 28px; }
+.onboard-dest .ob-dest-txt { text-align: right; flex: 1; }
+.onboard-dest .ob-dest-txt b { display: block; font-family: var(--font-head); font-size: 17px; color: var(--on-surface, #1f1a1e); margin-bottom: 2px; }
+.onboard-dest .ob-dest-sub { display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; color: var(--on-surface-variant, #57423e); }
+.onboard-dest .ob-dest-sub .material-symbols-outlined { font-size: 14px; }
+.onboard-cta {
+  width: 100%; background: var(--primary-container, #f2705a); color: #fff;
+  padding: 16px; border-radius: 14px;
+  font-family: var(--font-head); font-size: 18px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  box-shadow: 0 8px 15px rgba(242,112,90,.35), inset 4px 4px 8px rgba(255,255,255,.4), inset -4px -4px 8px rgba(0,0,0,.12);
+  transition: transform .2s cubic-bezier(.34,1.56,.64,1);
+}
+.onboard-cta:active { transform: scale(.95); }
+.onboard-cta .material-symbols-outlined { font-size: 22px; }
+.onboard-skip {
+  position: absolute; top: 8px; left: 16px; z-index: 3;
+  color: rgba(255,255,255,.7); font-weight: 700; font-size: 14px;
+}

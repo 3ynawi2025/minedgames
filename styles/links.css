@@ -1,0 +1,40 @@
+/* خطوط اتصال الأرقام في Number Match */
+.board-wrap { position: relative; }
+.board { position: relative; }
+.link-layer {
+  position: absolute; top: 12px; left: 12px;
+  width: calc(100% - 24px); height: calc(100% - 24px);
+  pointer-events: none; z-index: 5;
+}
+/* خيط اتصال متدفّق: لون نابض + توهّج ناعم + مسار قطرات يتحرّك */
+.link-layer line {
+  stroke: var(--accent-info);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 7 6;
+  opacity: 0.72;
+  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--accent-info) 70%, transparent));
+  animation: threadFlow 0.9s linear infinite;
+}
+@keyframes threadFlow { to { stroke-dashoffset: -13; } }
+.cell.matchable {
+  animation: matchPulse 1s var(--ease-out) infinite;
+  box-shadow: 0 0 0 3px rgba(var(--cell-selected-shadow-rgb), .45);
+}
+@keyframes matchPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+
+/* ثيم المدينة: خلفية المعلم + أيقونة البانر */
+.game-screen { position: relative; }
+.city-backdrop {
+  position: absolute; top: 0; left: 0; right: 0; height: 120px;
+  opacity: 0.09; pointer-events: none; z-index: 0;
+}
+.city-backdrop svg { width: 100%; height: 100%; }
+.game-screen > .hud, .game-screen > .board-wrap, .game-screen > .toolbar, .city-banner { position: relative; z-index: 1; }
+.banner-icon { width: 42px; height: 42px; flex: 0 0 auto; display: inline-flex; }
+.banner-icon svg { width: 100%; height: 100%; }
+
+@media (prefers-reduced-motion: reduce) {
+  .link-layer line { animation: none; }
+}

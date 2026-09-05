@@ -1,0 +1,35 @@
+# التبعيات والبناء
+node_modules/
+www/
+
+# ملفات النظام
+.DS_Store
+
+# Capgo (مفاتيح محلية)
+.capgo/
+
+# بناء iOS
+ios/App/build/
+ios/App/DerivedData/
+ios/App/App.xcodeproj/xcuserdata/
+ios/App/App.xcodeproj/project.xcworkspace/xcuserdata/
+.swiftpm/
+.build/
+
+# بناء Android + التوقيع (مفاتيح خاصة)
+android/.gradle/
+android/build/
+android/app/build/
+android/app/.cxx/
+android/local.properties
+*.apk
+*.ipa
+*.aab
+*.keystore
+*.jks
+
+# سجلات
+*.log
+# أسرار الخادم (كلمة سر المدير + SQL الخاص بـ Supabase RPC)
+supabase-gifts.sql
+

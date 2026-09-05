@@ -1,0 +1,14 @@
+{
+  "appId": "com.salemalyahyaee.mined.and.puzzle.game",
+  "appName": "Brain Match: Number Puzzles",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "CapacitorUpdater": {
+      "autoUpdate": true,
+      "defaultChannel": "production"
+    }
+  }
+}
